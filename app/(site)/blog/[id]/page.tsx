@@ -65,7 +65,7 @@ const getRelatedPosts = async (categoriesObj: any, currentPostId: string) => {
 
 
 const SingleBlogPage = async ({ params }: PageProps) => {
-  const blogId = 86;
+  const blogId = params?.id || 86;
 
   const res = await fetch(
     `https://public-api.wordpress.com/rest/v1.1/sites/${SITE}/posts/${blogId}`,

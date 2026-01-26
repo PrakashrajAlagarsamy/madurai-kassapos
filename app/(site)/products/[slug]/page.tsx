@@ -1,4 +1,3 @@
-export const runtime = "nodejs";
 import { parseWpProduct } from "@/components/products/parseWpProduct";
 import ProductLayout from "@/components/products/ProductLayout";
 import { notFound } from "next/navigation";
@@ -12,7 +11,6 @@ const SITE = "kassaposbillingsoftware.wordpress.com";
 // Fetch the page from WordPress
 async function getPage(slug: string) {
   try {
-    console.log("Fetching page for slug:", slug);
     const res = await fetch(
       `https://public-api.wordpress.com/wp/v2/sites/${SITE}/pages?slug=${slug}`,
       { 

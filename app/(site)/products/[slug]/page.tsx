@@ -14,7 +14,10 @@ async function getPage(slug: string) {
     console.log("Fetching page for slug:", slug);
     const res = await fetch(
       `https://public-api.wordpress.com/wp/v2/sites/${SITE}/pages?slug=${slug}`,
-      { next: { revalidate: 60 } }
+      { 
+        redirect: "follow",
+        next: { revalidate: 60 } 
+      }
     );
 
     if (!res.ok) {

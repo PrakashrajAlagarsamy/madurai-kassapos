@@ -27,35 +27,35 @@ const menuData: Menu[] = [
             id: 311,
             title: "Super Market & Grocery Shop",
             newTab: false,
-            path: "/pages/products/super-market-grocery-shop",
+            path: "/products/super-market-grocery-shop",
             slug: "super-market-grocery-shop"
           },          
           {
             id: 312,
             title: "Retail Shop",
             newTab: false,
-            path: "/pages/products/retail-shop",
+            path: "/products/retail-shop",
             slug: "retail-shop"
           },
           {
             id: 313,
             title: "Vegetable & Fruit Shop",
             newTab: false,
-            path: "/pages/products/vegetable-fruit-shop",
+            path: "/products/vegetable-fruit-shop",
             slug: "vegetable-fruit-shop"
           },
           {
             id: 314,
             title: "Garments & Textile Shop",
             newTab: false,
-            path: "/pages/products/garments-textile-shop",
+            path: "/products/garments-textile-shop",
             slug: "garments-textile-shop"
           },
           {
             id: 315,
             title: "Wholesale & Agencies Shop",
             newTab: false,
-            path: "/pages/products/wholesale-agencies-shop",
+            path: "/products/wholesale-agencies-shop",
             slug: "wholesale-agencies-shop"
           },
         ]
@@ -69,21 +69,21 @@ const menuData: Menu[] = [
             id: 321,
             title: "Restaurant & Cafe",
             newTab: false,
-            path: "/pages/products/restaurant-cafe",
+            path: "/products/restaurant-cafe",
             slug: "restaurant-cafe"
           },
           {
             id: 322,
             title: "Bakery & Sweet Shop",
             newTab: false,
-            path: "/pages/products/bakery-sweet-shop",
+            path: "/products/bakery-sweet-shop",
             slug: "bakery-sweet-shop"
           },
           {
             id: 323,
             title: "Liquor Shop & Bar",
             newTab: false,
-            path: "/pages/products/liquor-shop-bar",
+            path: "/products/liquor-shop-bar",
             slug: "liquor-shop-bar"
           },
         ]
@@ -92,28 +92,28 @@ const menuData: Menu[] = [
         id: 35,
         title: "Cloud Billing Software",
         newTab: false,
-        path: "/pages/products/cloud-billing-software",
+        path: "/products/cloud-billing-software",
         slug: "cloud-billing-software"
       },
       {
         id: 36,
         title: "Mobile Billing Software",
         newTab: false,
-        path: "/pages/products/mobile-billing-software",
+        path: "/products/mobile-billing-software",
         slug: "mobile-billing-software"
       },
       {
         id: 37,
         title: "Chicken & Meat Shop Software",
         newTab: false,
-        path: "/pages/products/chicken-meat-shop-software",
+        path: "/products/chicken-meat-shop-software",
         slug: "chicken-meat-shop-software"
       },
       {
         id: 38,
         title: "GST Invoicing Software",
         newTab: false,
-        path: "/pages/products/gst-invoicing-software",
+        path: "/products/gst-invoicing-software",
         slug: "gst-invoicing-software"
       },
     ],
@@ -141,7 +141,7 @@ const menuData: Menu[] = [
     id: 7,
     title: "contact Us",
     newTab: false,
-    path: "/contact-us",
+    path: "/pages/contactus",
   },  
 ];
 

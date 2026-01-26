@@ -99,7 +99,7 @@ const Header = ({ showPopup, setShowPopup }) => {
           </div>
 
           {/* Nav Menu Start   */}
-          {/* <div
+          <div
             className={`invisible h-0 w-full items-center justify-between xl:visible xl:flex xl:h-auto xl:w-full ${navigationOpen &&
               "navbar visible! mt-4 h-auto max-h-[400px] rounded-md bg-white p-0 shadow-solid-5 dark:bg-blacksection xl:h-auto xl:p-0 xl:shadow-none xl:dark:bg-transparent"
               }`}
@@ -203,95 +203,8 @@ const Header = ({ showPopup, setShowPopup }) => {
     </button>
   </div>
           </div> 
-          */}
+         
 
-{/* Nav Menu Start */ }
-<div
-  className={`invisible h-0 w-full items-center justify-between xl:visible xl:flex xl:h-auto xl:w-full ${navigationOpen &&
-    "navbar visible! mt-4 h-auto max-h-[400px] rounded-md bg-white p-0 shadow-solid-5 dark:bg-blacksection"
-    }`}
->
-  <nav>
-    <ul className="flex flex-col gap-5 xl:flex-row xl:items-center xl:gap-10">
-      {menuData.map((menuItem) => (
-        <li
-          key={menuItem.id}
-          className={menuItem.submenu ? "group relative" : ""}
-        >
-          {menuItem.submenu ? (
-            <>
-              {/* PARENT */}
-              <button
-                onClick={() =>
-                  setActiveDropdown(
-                    activeDropdown === menuItem.id ? null : menuItem.id
-                  )
-                }
-                className="flex items-center gap-3 hover:text-[#1660c1]"
-              >
-                {menuItem.title}
-                <svg
-                  className="h-3 w-3 fill-waterloo group-hover:fill-[#1660c1]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                </svg>
-              </button>
-
-              {/* DROPDOWN */}
-              <ul
-                className={`absolute top-full left-0 mt-2 w-64 rounded-md bg-white shadow-lg ${activeDropdown === menuItem.id ? "block" : "hidden"
-                  }`}
-              >
-                {menuItem.submenu.map((sub) => (
-                  <li key={sub.id} className="group/sub relative">
-                    {sub.children ? (
-                      <>
-                        <span className="flex cursor-pointer items-center justify-between px-4 py-2 hover:text-[#1660c1]">
-                          {sub.title}
-                          <span>▶</span>
-                        </span>
-
-                        <ul className="invisible absolute left-full top-0 w-56 rounded-md bg-white shadow-lg group-hover/sub:visible">
-                          {sub.children.map((child) => (
-                            <li key={child.id}>
-                              <Link
-                                href={child.path!}
-                                className="block px-4 py-2 hover:bg-gray-100 hover:text-[#1660c1]"
-                              >
-                                {child.title}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </>
-                    ) : (
-                      <Link
-                        href={sub.path!}
-                        className="block px-4 py-2 hover:text-[#1660c1]"
-                      >
-                        {sub.title}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : (
-            <Link
-              href={menuItem.path!}
-              className="hover:text-[#1660c1]"
-            >
-              {menuItem.title}
-            </Link>
-          )}
-        </li>
-      ))}
-    </ul>
-  </nav>
-</div>
-{/* Nav Menu End */ }
         </div >
       </header >
     </>

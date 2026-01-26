@@ -29,7 +29,7 @@ async function getPage(slug: string) {
 }
 
 export default async function ProductPage({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
 
   if (!slug) notFound();
 

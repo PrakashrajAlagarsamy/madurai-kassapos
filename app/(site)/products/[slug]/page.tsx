@@ -1,9 +1,10 @@
+export const runtime = "nodejs";
 import { parseWpProduct } from "@/components/products/parseWpProduct";
 import ProductLayout from "@/components/products/ProductLayout";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-  params: Promise<{ slug: string }>; // async-safe
+  params: Promise<{ slug: string }>;
 }
 
 const SITE = "kassaposbillingsoftware.wordpress.com";
@@ -15,7 +16,7 @@ async function getPage(slug: string) {
     const res = await fetch(
       `https://public-api.wordpress.com/wp/v2/sites/${SITE}/pages?slug=${slug}`,
       { 
-        redirect: "follow",
+        //redirect: "follow",
         next: { revalidate: 60 } 
       }
     );

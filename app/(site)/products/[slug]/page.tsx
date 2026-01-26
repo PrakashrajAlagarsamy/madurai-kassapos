@@ -33,36 +33,30 @@ async function getPage(slug: string) {
 }
 
 export default async function ProductPage({ params }: PageProps) {
-  // Wait for async params
-  const { slug } = await params;
-
-  if (!slug) notFound();
-
-  // Fetch page from WordPress
-  const page = await getPage(slug);
-
-  if (!page) {
-    console.warn("No page found for slug:", slug);
-    notFound(); // returns 404 instead of crashing
-  }
-
-  // Safely parse content
-  const htmlContent = page.content?.rendered ?? "";
-  let product;
   try {
-    product = parseWpProduct(htmlContent);
-  } catch (err) {
-    console.error("Error parsing product content:", err);
-    notFound(); // fallback to 404 if parsing fails
-  }
+    const { slug } = await params;
 
-  return (
-    <ProductLayout
-      image={product.image ?? "/images/default-product.png"} // fallback image
-      title={product.title ?? "No Title"}
-      description={product.description ?? ""}
-      features={product.features ?? []}
-      extraContent={product.extraContent ?? ""}
-    />
-  );
+    if (!slug) return notFound();
+
+    const page = await getPage(slug);
+
+    if (!page) return notFound();
+
+    const htmlContent = page.content?.rendered ?? "";
+    const product = parseWpProduct(htmlContent);
+
+    return (
+      <ProductLayout
+        image={product.image ?? "/images/default-product.png"}
+        title={product.title ?? "No Title"}
+        description={product.description ?? ""}
+        features={product.features ?? []}
+        extraContent={product.extraContent ?? ""}
+      />
+    );
+  } catch (err) {
+    console.error("Error rendering ProductPage:", err);
+    return notFound(); // fallback to 404 instead of 500
+  }
 }
+

@@ -1,93 +1,42 @@
 // import { JSDOM } from "jsdom";
 
 // export function parseWpProduct(html: string) {
-//   try {
-//     if (!html || typeof html !== "string") {
-//       return {
-//         image: "",
-//         title: "",
-//         description: "",
-//         features: [],
-//         extraContent: "",
-//       };
-//     }
+//   const dom = new JSDOM(html);
+//   const document = dom.window.document;
 
-//     const dom = new JSDOM(html);
-//     const document = dom.window.document;
+//   const image =
+//     document.querySelector("figure img")?.getAttribute("src") || "";
 
-//     const image =
-//       document.querySelector("figure img")?.getAttribute("src") ?? "";
+//   const title =
+//     document.querySelector("h1")?.textContent || document.querySelector("h2")?.textContent || "";
 
-//     const title =
-//       document.querySelector("h1")?.textContent?.trim() ||
-//       document.querySelector("h2")?.textContent?.trim() ||
-//       "";
+//   const description =
+//     document.querySelector("p")?.textContent || "";
 
-//     const description =
-//       document.querySelector("p")?.textContent?.trim() ?? "";
+//   const features = Array.from(
+//     document.querySelectorAll("ul li")
+//   ).map((li) => li.textContent || "");
 
-//     const features = Array.from(document.querySelectorAll("ul li"))
-//       .map((li) => li.textContent?.trim())
-//       .filter(Boolean) as string[];
+//   // --- REMAINING CONTENT ---
+//   const extraContent =
+//     document.querySelector("details")?.textContent || "";
+//   //const extraContent = document.body.innerHTML;
 
-//     const extraContent =
-//       document.querySelector("details")?.textContent?.trim() ?? "";
-
-//     return { image, title, description, features, extraContent };
-//   } catch (error) {
-//     console.error("❌ parseWpProduct failed:", error);
-
-//     // NEVER crash the page
-//     return {
-//       image: "",
-//       title: "",
-//       description: "",
-//       features: [],
-//       extraContent: "",
-//     };
-//   }
+//   return { image, title, description, features, extraContent };
 // }
 
 
+import { parse } from "node-html-parser";
+
 export function parseWpProduct(html: string) {
-  if (!html || typeof html !== "string") {
-    return {
-      image: "",
-      title: "",
-      description: "",
-      features: [],
-      extraContent: "",
-    };
-  }
-
-  const strip = (s: string) => s.replace(/<[^>]*>/g, "").trim();
-
-  const image =
-    html.match(/<img[^>]+src="([^">]+)"/)?.[1] ?? "";
-
-  const title =
-    strip(
-      html.match(/<h1[^>]*>(.*?)<\/h1>/)?.[1] ??
-      html.match(/<h2[^>]*>(.*?)<\/h2>/)?.[1] ??
-      html.match(/<h3[^>]*>(.*?)<\/h3>/)?.[1] ??
-      html.match(/<h4[^>]*>(.*?)<\/h4>/)?.[1] ??
-      html.match(/<h5[^>]*>(.*?)<\/h5>/)?.[1] ??
-      html.match(/<h6[^>]*>(.*?)<\/h6>/)?.[1] ??
-      ""
-    );
-
-  const description =
-    strip(html.match(/<p[^>]*>(.*?)<\/p>/)?.[1] ?? "");
-
-  const features = [...html.matchAll(/<li[^>]*>(.*?)<\/li>/g)].map(
-    m => strip(m[1])
-  );
+  const root = parse(html);
+  const quotations = [...html.matchAll(/"([^"]+)"/g)].map(m => m[1]);
 
   return {
-    image,
-    title,
-    description,
-    features,
-    extraContent: html,
+    image: root.querySelector("figure img")?.getAttribute("src") ?? "",
+    title: root.querySelector("h1,h2,h3,h4,h5,h6")?.text ?? "",
+    description: root.querySelector("p")?.text ?? "",
+    features: root.querySelectorAll("ul li").map(li => li.text),
+    extraContent: root.querySelector("details")?.innerHTML ?? "" + quotations,
   };
 }

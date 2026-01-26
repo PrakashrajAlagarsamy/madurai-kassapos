@@ -223,3 +223,33 @@ pre {
 .active-tab {
   @apply bg-stroke text-black dark:bg-blackho dark:text-white;
 }
+
+
+.has-shapes .shape-lg, .has-shapes .shape-md, .has-shapes .shape-sm, .has-shapes .shape-sm-2, .has-shapes .shape-xl, .has-shapes .shape-xs, .has-shapes .shape-xs-2 {
+    pointer-events: none;
+    border-radius: 3.40282e+38px;
+    position: absolute;
+  }
+
+  .has-shapes .shape-xs {
+    width: 26px;
+    height: 26px;
+}
+
+.has-shapes .shape-sm-2 {
+    width: 35px;
+    height: 35px;
+}
+
+.has-shapes .shape-xs-2 {
+    width: 15px;
+    height: 15px;
+}
+
+.page-header .shape-1 {
+    opacity: .5;
+    width: 18px;
+    height: 18px;
+    top: 15px;
+    left: 100px;
+}
